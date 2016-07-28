@@ -82,14 +82,4 @@ class MyService
   def to_hash(groups)
     Hash[*groups.map { |group| [group[:id], group] }.flatten ]
   end
-
-  def wait_for_ajax
-    Timeout.timeout(Capybara.default_max_wait_time) do
-      loop until finished_all_ajax_requests?
-    end
-  end
-
-  def finished_all_ajax_requests?
-    evaluate_script('jQuery.active').zero?
-  end
 end
