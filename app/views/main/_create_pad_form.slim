@@ -1,0 +1,15 @@
+- url = { action: :create_pad, controller: :main, pad: { group: group } }
+- html = { class: "form-group-#{group}" }
+= simple_form_for :pad, url: url, remote: true, html: html, method: :get do |f|
+  .box-body
+    .form-group
+      = f.input :title, label: 'Название',
+                input_html: { class: 'form-control', required: true }
+    .form-group
+      = f.input :type, label: 'Тип', as: :select,
+                collection: pad_type_select,
+                input_html: { class: 'form-control', required: true },
+                allow_blank: true
+  .box-footer
+    = f.submit 'Добавить блок', class: 'btn btn-primary form-btn', data: { 'form-group' => group }
+    = link_to 'Обновить данные', load_pads_path(group: group), remote: true, class: "load-pads load-pads-#{group}"

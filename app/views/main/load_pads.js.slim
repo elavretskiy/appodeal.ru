@@ -1,0 +1,9 @@
+|
+  $(".load-pads-#{@group[0]}").hide();
+
+  $("#groups-#{@group[0]}").replaceWith('
+= j render 'main/group', group: @group
+|
+  ');
+
+  alert("#{@notice || @alert}");

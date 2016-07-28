@@ -1,0 +1,10 @@
+- url = { action: :load_data, controller: :main }
+- html = { class: 'validate-form' }
+= simple_form_for :my, url: url, remote: true, html: html, method: :get do |f|
+  .box-body
+    .form-group
+      = f.input :login, label: 'Логин', input_html: { class: 'form-control', required: true }
+    .form-group
+      = f.input :password, label: 'Пароль', input_html: { class: 'form-control', required: true }
+  .box-footer
+    = f.submit 'Загрузить данные', class: 'btn btn-primary form-btn'

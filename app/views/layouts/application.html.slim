@@ -1,0 +1,17 @@
+doctype html
+html
+  head
+    title Appodeal.ru
+    = stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track' => true
+    = javascript_include_tag 'application', 'data-turbolinks-track' => true
+    = csrf_meta_tags
+  body
+    .container
+      .row
+        .col-md-12
+          h3
+            = link_to 'Appodeal.ru', root_path
+        .col-md-12
+          = render 'shared/notice_alert'
+        .col-md-12
+          = yield

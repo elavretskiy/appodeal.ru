@@ -1,0 +1,9 @@
+|
+  $('.form-btn').prop('disabled', false);
+
+  $('#groups').replaceWith('
+= j render 'main/groups', groups: @groups
+|
+  ');
+
+  alert("#{@notice || @alert}");

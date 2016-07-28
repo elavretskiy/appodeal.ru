@@ -1,0 +1,6 @@
+|
+  $('.form-btn').prop('disabled', false);
+  $(".form-group-#{@group}")[0].reset();
+  $(".load-pads-#{@group}").show();
+
+  alert("#{@notice || @alert}");

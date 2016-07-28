@@ -1,0 +1,7 @@
+div id="groups-#{group[0]}"
+  hr
+  .row
+    .col-md-6
+      = render 'main/pads', group: group[1]
+    .col-md-6
+      = render 'main/create_pad_form', group: group[0]
