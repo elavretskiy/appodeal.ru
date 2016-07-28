@@ -1,7 +1,6 @@
 div id="pads-#{group[:id]}"
-  - setting = MySettings.instance
   h3
-    = link_to group[:title], setting.group_link(group[:id]), target: '_blank'
+    = link_to group[:title], MySettings.group_link(group[:id]), target: '_blank'
 
   .box
     .box-body
@@ -14,6 +13,6 @@ div id="pads-#{group[:id]}"
           - group[:pads].each do |pad|
             tr
               td
-                = link_to pad[:title], setting.pad_link(pad[:id]), target: '_blank'
+                = link_to pad[:title], MySettings.pad_link(pad[:id]), target: '_blank'
               td
                 = pad[:slot_id]

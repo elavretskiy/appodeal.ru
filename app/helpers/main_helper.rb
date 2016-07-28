@@ -1,15 +1,10 @@
 module MainHelper
-  def group_link
-    "#{MySettings.instance.group_link}"
-  end
-
   def pad_type_select
-    settings = MySettings.instance
     [
-      ['Standart', settings.format_standard_class],
-      ['Fullscreen', settings.format_fullscreen_class],
-      ['Native', settings.format_native_class],
-      ['Video', settings.format_video_class]
+      ['Standart', MySettings.format_standard_class],
+      ['Fullscreen', MySettings.format_fullscreen_class],
+      ['Native', MySettings.format_native_class],
+      ['Video', MySettings.format_video_class]
     ]
   end
 end

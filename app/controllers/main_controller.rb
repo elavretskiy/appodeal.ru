@@ -1,22 +1,20 @@
-require 'my_settings'
-
 class MainController < ApplicationController
   before_action :my_login, only: [:load_data, :create_pad, :load_pads]
 
   def index
-    @groups = MySettings.instance.groups || []
+    @groups = MySettings.groups || []
   end
 
   def load_data
-    groups = @my.get_groups
-    pads = @my.get_pads(groups)
-    groups = @my.get_slot_id(pads)
-    MySettings.instance.groups = groups
+    @my.get_groups
+    @my.get_pads
+    @my.get_slots
+    @my.set_groups
     @notice = 'Данные успешно загружены'
   rescue Exception => e
     @alert = e.message
   ensure
-    @groups = MySettings.instance.groups
+    @groups = MySettings.groups
   end
 
   def create_pad
@@ -29,16 +27,14 @@ class MainController < ApplicationController
   end
 
   def load_pads
-    group = params[:group]
-    groups = [{ id: group }]
-    pads = @my.get_pads(groups)
-    groups = @my.get_slot_id(pads)
-    MySettings.instance.groups[group][:pads] = groups[group][:pads]
+    pads = @my.get_pads([{ id: params[:group] }])
+    groups = @my.get_slots(pads)
+    @my.set_pads(groups, params[:group])
     @notice = 'Блоки успешно загружены'
   rescue Exception => e
     @alert = e.message
   ensure
-    @group = [params[:group], MySettings.instance.groups[params[:group]]]
+    @group = [params[:group], MySettings.groups[params[:group]]]
   end
 
   private
@@ -52,7 +48,7 @@ class MainController < ApplicationController
   end
 
   def my_login
-    @my = MyService.new
-    params[:my] ? @my.login(my_params) : @my.login
+    @my = params[:my] ? MyService.new(my_params) : MyService.new
+    @my.login
   end
 end
