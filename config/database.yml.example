@@ -4,7 +4,7 @@ test:
   encoding: unicode
   database: appodeal_test
   pool:     5
-  username: lavrik
+  username:
   password:
   template: template0
 
@@ -14,7 +14,7 @@ development:
   encoding: unicode
   database: appodeal_development
   pool:     5
-  username: lavrik
+  username:
   password:
   template: template0
 
@@ -24,6 +24,6 @@ production:
   encoding: unicode
   database: appodeal_production
   pool:     5
-  username: lavrik
+  username:
   password:
   template: template0
